@@ -19,7 +19,7 @@ constexpr void constexpr_for(F&& f)
     }
 }
 
-template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, size_t RANS_STATE_VALID_BITS=0>
+template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, size_t RANS_STATE_VALID_BITS>
 torch::Tensor rans_init_stream(ssize_t size, ssize_t num_interleaves, ssize_t preallocate_size) 
 {
   ssize_t stream_init_size = 1 + preallocate_size / sizeof(DEFAULT_TORCH_TENSOR_TYPE) + num_interleaves * ((sizeof(RANS_STATE_TYPE) + sizeof(DEFAULT_TORCH_TENSOR_TYPE) - 1) / sizeof(DEFAULT_TORCH_TENSOR_TYPE));
@@ -41,7 +41,7 @@ torch::Tensor rans_init_stream(ssize_t size, ssize_t num_interleaves, ssize_t pr
 }
 
 
-template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, bool USE_ALIAS_SAMPLING_CDF=false, size_t NUM_INTERLEAVES=1>
+template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, bool USE_ALIAS_SAMPLING_CDF, size_t NUM_INTERLEAVES>
 void rans_push_indexed_cpu(// ANSStream stream,
   torch::Tensor stream, 
   const torch::Tensor& symbols, 
@@ -188,7 +188,7 @@ void rans_push_indexed_cpu(// ANSStream stream,
 
 }
 
-template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, bool USE_ALIAS_SAMPLING_CDF=false, bool USE_INVERSED_CDF=false, size_t NUM_INTERLEAVES=1>
+template <typename RANS_STATE_TYPE, typename RANS_STREAM_TYPE, bool USE_ALIAS_SAMPLING_CDF, bool USE_INVERSED_CDF, size_t NUM_INTERLEAVES>
 torch::Tensor rans_pop_indexed_cpu(// ANSStream stream,
   torch::Tensor stream, 
   const torch::Tensor& indexes, 
