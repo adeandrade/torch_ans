@@ -121,5 +121,5 @@ setup(
     ext_modules=ext_modules,
     cmdclass=cmdclass,
     install_requires=["torch>=1.10", "pybind11"],
-    python_requires=">=3.7",
+    python_requires=">=3.14",
 )
